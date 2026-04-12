@@ -1,23 +1,33 @@
-/**
- * @Author: lidonglin
- * @Description:
- * @File:  status_code.go
- * @Version: 1.0.0
- * @Date: 2022/11/03 10:43
- */
-
 package tconst
 
+// HTTP status code constants for API responses, ordered by ascending numeric value.
+// Multiple symbols may share a value when distinct conditions map to the same HTTP status.
 const (
-	StatusCodeTypeOk = 200 // 成功
+	// StatusCodeOk indicates that the request completed successfully.
+	StatusCodeOk = 200
 
-	StatusCodeTypeInvalidReq = 400 // 请求缺少某个必需参数，包含一个不支持的参数或参数值，或者格式不正确
-	StatusCodeTypeNotFound   = 404 // 请求失败，请求所希望得到的资源未被在服务器上发现。在参数相同的情况下，不应该重复请求
-	StatusCodeTypeForbidden  = 403 // 用户没有对当前动作的权限，引导重新身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交
+	// StatusCodeInvalidReq indicates a bad request: missing required fields,
+	// unsupported parameters or values, or malformed input.
+	StatusCodeInvalidReq = 400
+	// StatusCodeInvalidTime indicates that the client clock is invalid; the client
+	// should obtain server time and retry with a corrected timestamp.
+	StatusCodeInvalidTime = 400
 
-	StatusCodeTypeServerError = 500 // 服务器出现异常情况 可稍等后重新尝试请求，但需有尝试上限，建议最多3次，如一直失败，则中断并告知用户
+	// StatusCodeAccessDenied indicates that authentication failed or the access token was rejected.
+	StatusCodeAccessDenied = 401
 
-	StatusCodeTypeInvalidTime      = 400 // 客户端时间不正确，应请求服务器时间重新构造
-	StatusCodeTypeAccessDenied     = 401 // AccessToken访问拒绝
-	StatusCodeTypeMethodNotAllowed = 405 // 请求行中指定的请求方法不能被用于请求相应的资源
+	// StatusCodeForbidden indicates that the authenticated caller is not permitted
+	// to perform this action; re-authentication will not resolve the denial.
+	StatusCodeForbidden = 403
+
+	// StatusCodeNotFound indicates that the target resource does not exist.
+	// Identical requests must not be retried indefinitely when the resource remains absent.
+	StatusCodeNotFound = 404
+
+	// StatusCodeMethodNotAllowed indicates that the HTTP method is not allowed for the resource.
+	StatusCodeMethodNotAllowed = 405
+
+	// StatusCodeServerError indicates an unexpected server failure. Clients may retry
+	// with bounded attempts (for example, up to three); persistent failure should surface to the user.
+	StatusCodeServerError = 500
 )

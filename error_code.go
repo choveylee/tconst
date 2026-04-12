@@ -1,28 +1,33 @@
-/**
- * @Author: lidonglin
- * @Description:
- * @File:  error_code.go
- * @Version: 1.0.0
- * @Date: 2022/11/03 10:43
- */
-
 package tconst
 
+// Application error codes identify business-layer outcomes. They are not a substitute
+// for HTTP status; combine them according to each API's contract.
 const (
-	ErrorCodeSuccess = 0 // 成功
+	// ErrorCodeSuccess indicates that no application error occurred.
+	ErrorCodeSuccess = 0
 
-	ErrorCodeErrCodeIllegal      = 1001 // 错误码非法
-	ErrorCodeRequestParamIllegal = 1002 // 请求参数非法
+	// ErrorCodeErrCodeIllegal indicates that the supplied error code value is not recognized.
+	ErrorCodeErrCodeIllegal = 1001
+	// ErrorCodeRequestParamIllegal indicates invalid or disallowed request parameters.
+	ErrorCodeRequestParamIllegal = 1002
 
-	ErrorCodeAccessTokenIllegal = 1003 // AccessToken非法
+	// ErrorCodeAccessTokenIllegal indicates that the access token is missing, expired, or malformed.
+	ErrorCodeAccessTokenIllegal = 1003
 
-	ErrorCodeDbServerAbnormal      = 1101 // Database服务器异常
-	ErrorCodeRedServerAbnormal     = 1102 // Redis服务器异常
-	ErrorCodeEsServerAbnormal      = 1103 // ElasticSearch服务器异常
-	ErrorCodeUnknownServerAbnormal = 1104 // 未知服务器异常
+	// ErrorCodeDbServerAbnormal indicates a database backend failure.
+	ErrorCodeDbServerAbnormal = 1101
+	// ErrorCodeRedServerAbnormal indicates a Redis backend failure.
+	ErrorCodeRedServerAbnormal = 1102
+	// ErrorCodeEsServerAbnormal indicates an Elasticsearch backend failure.
+	ErrorCodeEsServerAbnormal = 1103
+	// ErrorCodeUnknownServerAbnormal indicates an infrastructure failure not classified above.
+	ErrorCodeUnknownServerAbnormal = 1104
 
-	ErrorCodeActionIllegal      = 1201 // 访问路径非法
-	ErrorCodePermitCountIllegal = 1202 // 访问数量上限
+	// ErrorCodeActionIllegal indicates that the requested path or action is not allowed.
+	ErrorCodeActionIllegal = 1201
+	// ErrorCodePermitCountIllegal indicates that a per-caller or resource quota was exceeded.
+	ErrorCodePermitCountIllegal = 1202
 
-	ErrorCodeAuthRequestLimit = 1301 // 超过访问上限
+	// ErrorCodeAuthRequestLimit indicates that the caller exceeded an authentication or access rate limit.
+	ErrorCodeAuthRequestLimit = 1301
 )
