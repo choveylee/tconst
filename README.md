@@ -24,11 +24,15 @@ w.WriteHeader(tconst.StatusCodeOk)
 code := tconst.ErrorCodeRequestParamIllegal
 ```
 
+For timestamp validation failures, return `tconst.StatusCodeInvalidTime` with
+`tconst.ErrorCodeRequestTimeIllegal`. For rate limiting, pair
+`tconst.StatusCodeTooManyRequests` with `tconst.ErrorCodeAuthRequestLimit`.
+
 ## Constants
 
 | Group | File | Description |
 |-------|------|-------------|
-| HTTP status | `status_code.go` | Numeric codes such as `StatusCodeOk`, `StatusCodeInvalidReq`, `StatusCodeServerError`. |
-| Application errors | `error_code.go` | Numeric business error codes (e.g. `ErrorCodeSuccess`, parameter and infrastructure errors). |
+| HTTP status | `status_code.go` | Numeric codes such as `StatusCodeOk`, `StatusCodeUnauthorized`, `StatusCodeTooManyRequests`, `StatusCodeServerError`. |
+| Application errors | `error_code.go` | Numeric business error codes (e.g. `ErrorCodeSuccess`, `ErrorCodeRequestTimeIllegal`, MySQL/Redis/Elasticsearch infrastructure errors). |
 
 Some HTTP-level distinctions share the same numeric status (for example, multiple `400` cases); use the business error code for fine-grained handling where needed.

@@ -13,13 +13,17 @@ const (
 
 	// ErrorCodeAccessTokenIllegal indicates that the access token is missing, expired, or malformed.
 	ErrorCodeAccessTokenIllegal = 1003
+	// ErrorCodeRequestTimeIllegal indicates that the request timestamp is missing,
+	// expired, or otherwise invalid for time-skew validation.
+	ErrorCodeRequestTimeIllegal = 1004
 
-	// ErrorCodeDbServerAbnormal indicates a database backend failure.
-	ErrorCodeDbServerAbnormal = 1101
-	// ErrorCodeRedServerAbnormal indicates a Redis backend failure.
-	ErrorCodeRedServerAbnormal = 1102
+	// ErrorCodeMysqlServerAbnormal indicates a MySQL backend failure.
+	ErrorCodeMysqlServerAbnormal = 1101
+	// ErrorCodeRedisServerAbnormal indicates a Redis backend failure.
+	ErrorCodeRedisServerAbnormal = 1102
 	// ErrorCodeEsServerAbnormal indicates an Elasticsearch backend failure.
 	ErrorCodeEsServerAbnormal = 1103
+
 	// ErrorCodeUnknownServerAbnormal indicates an infrastructure failure not classified above.
 	ErrorCodeUnknownServerAbnormal = 1104
 

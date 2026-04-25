@@ -13,8 +13,8 @@ const (
 	// should obtain server time and retry with a corrected timestamp.
 	StatusCodeInvalidTime = 400
 
-	// StatusCodeAccessDenied indicates that authentication failed or the access token was rejected.
-	StatusCodeAccessDenied = 401
+	// StatusCodeUnauthorized indicates that authentication failed or the access token was rejected.
+	StatusCodeUnauthorized = 401
 
 	// StatusCodeForbidden indicates that the authenticated caller is not permitted
 	// to perform this action; re-authentication will not resolve the denial.
@@ -26,6 +26,9 @@ const (
 
 	// StatusCodeMethodNotAllowed indicates that the HTTP method is not allowed for the resource.
 	StatusCodeMethodNotAllowed = 405
+	// StatusCodeTooManyRequests indicates that the caller exceeded a rate limit and
+	// should back off before retrying.
+	StatusCodeTooManyRequests = 429
 
 	// StatusCodeServerError indicates an unexpected server failure. Clients may retry
 	// with bounded attempts (for example, up to three); persistent failure should surface to the user.
