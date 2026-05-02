@@ -1,12 +1,13 @@
 # tconst
 
-Shared constants for HTTP status codes and application error codes, for use across Go services.
+Shared numeric constants for HTTP response status codes and application error
+codes intended for use across Go services.
 
 ## Requirements
 
 - Go 1.25 or later
 
-## Install
+## Installation
 
 ```bash
 go get github.com/choveylee/tconst
@@ -17,22 +18,25 @@ go get github.com/choveylee/tconst
 ```go
 import "github.com/choveylee/tconst"
 
-// HTTP status (e.g. for JSON APIs)
+// HTTP response status code (for example, in a JSON API)
 w.WriteHeader(tconst.StatusCodeOk)
 
-// Business error code (e.g. in response body)
+// Application error code (for example, in a response payload)
 code := tconst.ErrorCodeRequestParamIllegal
 ```
 
-For timestamp validation failures, return `tconst.StatusCodeInvalidTime` with
-`tconst.ErrorCodeRequestTimeIllegal`. For rate limiting, pair
+When a timestamp validation failure must be distinguished from a general bad
+request, return `tconst.StatusCodeInvalidTime` together with
+`tconst.ErrorCodeRequestTimeIllegal`. When a request is throttled, pair
 `tconst.StatusCodeTooManyRequests` with `tconst.ErrorCodeAuthRequestLimit`.
 
 ## Constants
 
 | Group | File | Description |
 |-------|------|-------------|
-| HTTP status | `status_code.go` | Numeric codes such as `StatusCodeOk`, `StatusCodeUnauthorized`, `StatusCodeTooManyRequests`, `StatusCodeServerError`. |
-| Application errors | `error_code.go` | Numeric business error codes (e.g. `ErrorCodeSuccess`, `ErrorCodeRequestTimeIllegal`, MySQL/Redis/Elasticsearch infrastructure errors). |
+| HTTP status | `status_code.go` | HTTP response status constants such as `StatusCodeOk`, `StatusCodeUnauthorized`, `StatusCodeTooManyRequests`, and `StatusCodeServerError`. |
+| Application errors | `error_code.go` | Application error constants such as `ErrorCodeSuccess`, `ErrorCodeRequestTimeIllegal`, and the MySQL, Redis, and Elasticsearch infrastructure error codes. |
 
-Some HTTP-level distinctions share the same numeric status (for example, multiple `400` cases); use the business error code for fine-grained handling where needed.
+Some application conditions intentionally share the same HTTP status value. For
+scenarios that require more precise client handling, return the appropriate
+application error code alongside the HTTP status code.

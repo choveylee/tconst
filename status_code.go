@@ -1,36 +1,39 @@
 package tconst
 
-// HTTP status code constants for API responses, ordered by ascending numeric value.
-// Multiple symbols may share a value when distinct conditions map to the same HTTP status.
+// HTTP status code constants for API responses, listed in ascending numeric
+// order. Multiple exported names may intentionally share the same numeric value
+// when distinct application conditions map to the same HTTP status.
 const (
 	// StatusCodeOk indicates that the request completed successfully.
 	StatusCodeOk = 200
 
-	// StatusCodeInvalidReq indicates a bad request: missing required fields,
-	// unsupported parameters or values, or malformed input.
+	// StatusCodeInvalidReq indicates that the request is invalid, such as when
+	// required fields are missing, input is malformed, or parameter values are
+	// unsupported.
 	StatusCodeInvalidReq = 400
-	// StatusCodeInvalidTime indicates that the client clock is invalid; the client
-	// should obtain server time and retry with a corrected timestamp.
+	// StatusCodeInvalidTime indicates that the client timestamp failed
+	// validation and should be corrected before the request is retried.
 	StatusCodeInvalidTime = 400
 
-	// StatusCodeUnauthorized indicates that authentication failed or the access token was rejected.
+	// StatusCodeUnauthorized indicates that authentication failed or the access
+	// token was rejected.
 	StatusCodeUnauthorized = 401
 
-	// StatusCodeForbidden indicates that the authenticated caller is not permitted
-	// to perform this action; re-authentication will not resolve the denial.
+	// StatusCodeForbidden indicates that the authenticated caller is not
+	// authorized to perform the requested action.
 	StatusCodeForbidden = 403
 
-	// StatusCodeNotFound indicates that the target resource does not exist.
-	// Identical requests must not be retried indefinitely when the resource remains absent.
+	// StatusCodeNotFound indicates that the requested resource could not be
+	// found.
 	StatusCodeNotFound = 404
 
-	// StatusCodeMethodNotAllowed indicates that the HTTP method is not allowed for the resource.
+	// StatusCodeMethodNotAllowed indicates that the HTTP method is not supported
+	// for the requested resource.
 	StatusCodeMethodNotAllowed = 405
-	// StatusCodeTooManyRequests indicates that the caller exceeded a rate limit and
-	// should back off before retrying.
+	// StatusCodeTooManyRequests indicates that the caller exceeded a rate limit
+	// and should retry only after an appropriate backoff interval.
 	StatusCodeTooManyRequests = 429
 
-	// StatusCodeServerError indicates an unexpected server failure. Clients may retry
-	// with bounded attempts (for example, up to three); persistent failure should surface to the user.
+	// StatusCodeServerError indicates an unexpected internal server failure.
 	StatusCodeServerError = 500
 )
