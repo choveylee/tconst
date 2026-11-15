@@ -5,7 +5,7 @@ codes intended for use across Go services.
 
 ## Requirements
 
-- Go 1.25 or later
+- Go 1.27.4 or later
 
 ## Installation
 
@@ -19,7 +19,7 @@ go get github.com/choveylee/tconst
 import "github.com/choveylee/tconst"
 
 // HTTP response status code (for example, in a JSON API)
-w.WriteHeader(tconst.StatusCodeOk)
+responseWriter.WriteHeader(tconst.StatusCodeOk)
 
 // Application error code (for example, in a response payload)
 code := tconst.ErrorCodeRequestParamIllegal
@@ -40,3 +40,11 @@ request, return `tconst.StatusCodeInvalidTime` together with
 Some application conditions intentionally share the same HTTP status value. For
 scenarios that require more precise client handling, return the appropriate
 application error code alongside the HTTP status code.
+
+## Validation
+
+```bash
+gofmt -l *.go
+go build ./...
+go vet ./...
+```
